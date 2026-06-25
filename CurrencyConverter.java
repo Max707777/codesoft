@@ -44,7 +44,7 @@ public class CurrencyConverter {
 
     private static double fetchExchangeRate(String baseCurrency, String targetCurrency) {
         try {
-            // Using a public, no-key API for exchange rates
+
             String urlStr = "https://api.exchangerate-api.com/v4/latest/" + baseCurrency;
             URL url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -65,19 +65,19 @@ public class CurrencyConverter {
             }
             reader.close();
 
-            // Very basic manual JSON parsing to avoid external dependencies
+
             String json = response.toString();
             String searchString = "\"" + targetCurrency + "\":";
             int targetIndex = json.indexOf(searchString);
 
             if (targetIndex == -1) {
-                return -1; // Target currency not found in response
+                return -1;
             }
 
-            // Extract the value part
+
             int startIndex = targetIndex + searchString.length();
             int endIndex = json.indexOf(",", startIndex);
-            if (endIndex == -1) { // It might be the last element before '}'
+            if (endIndex == -1) {
                 endIndex = json.indexOf("}", startIndex);
             }
 
@@ -87,7 +87,7 @@ public class CurrencyConverter {
             }
 
         } catch (Exception e) {
-            // Silently return -1 on error (network, parsing, etc)
+
         }
         return -1;
     }

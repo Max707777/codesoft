@@ -20,7 +20,7 @@ public class StudentGradeCalculator {
             System.out.print("Enter marks obtained in subject " + i + " (out of 100): ");
             int marks = scanner.nextInt();
 
-            // Input validation
+
             while (marks < 0 || marks > 100) {
                 System.out.print("Invalid marks. Please enter marks between 0 and 100: ");
                 marks = scanner.nextInt();
